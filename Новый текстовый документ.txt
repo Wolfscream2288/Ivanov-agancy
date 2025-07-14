@@ -1,0 +1,208 @@
+``html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Кадровое агентство ИП Иванов Владимир Алексеевич</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #0073e6;
+      color: white;
+      padding: 20px 10%;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 10px;
+    }
+    section {
+      margin-bottom: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #0073e6;
+      margin-top: 0;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    footer {
+      background-color: #0073e6;
+      color: white;
+      padding: 15px 10%;
+      text-align: center;
+      font-size: 14px;
+    }
+    a {
+      color: #004c99;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .contact-info {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    form button {
+      background-color: #0073e6;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    form button:hover {
+      background-color: #005bb5;
+    }
+    #formStatus {
+      color: green;
+      font-weight: bold;
+      display: none;
+      margin-top: 10px;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 600px) {
+      header, footer {
+        padding: 15px 5%;
+      }
+      main {
+        margin: 20px auto;
+        padding: 0 5%;
+        max-width: 100%;
+      }
+      header h1 {
+        font-size: 22px;
+      }
+      h2 {
+        font-size: 18px;
+      }
+      ul li {
+        font-size: 16px;
+      }
+      form input, form textarea, form button {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Кадровое агентство ИП Иванов Владимир Алексеевич</h1>
+  <p>Ваш надежный партнер в поиске лучших специалистов и вакансий!</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>Для работодателей</h2>
+    <ul>
+      <li>💼 Ищете квалифицированных сотрудников?</li>
+      <li>✨ Хотите быстро и эффективно закрыть вакансии?</li>
+      <li>👥 Мы подберем для вас подходящих кандидатов с учетом всех требований.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Для соискателей</h2>
+    <ul>
+      <li>🔍 Соискатель? Нам важен каждый талант!</li>
+      <li>Поможем найти работу мечты в вашем регионе и профессиональной сфере.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Свяжитесь с нами</h2>
+    <form id="contactForm" action="https://formspree.io/f/your_form_id" method="POST">
+      <label for="name">Имя:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="phone">Телефон:</label>
+      <input type="tel" id="phone" name="phone" required pattern="[\+0-9\s\-]+" />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="message">Сообщение:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+
+      <button type="submit">Отправить</button>
+    </form>
+    <p id="formStatus">Спасибо! Ваше сообщение отправлено.</p>
+<p>Или свяжитесь с нами напрямую по телефону: <a href="tel:+79001234567">+7 (900) 123-45-67</a></p>
+  </section>
+
+</main>
+
+<footer>
+  © 2024 ИП Иванов Владимир Алексеевич. Все права защищены.
+</footer>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        status.style.display = 'block';
+        form.reset();
+      } else {
+        alert('Ошибка при отправке. Попробуйте позже.');
+      }
+    }).catch(() => {
+      alert('Ошибка при отправке. Попробуйте позже.');
+    });
+  });
+</script>
+
+</body>
+</html>
+```
