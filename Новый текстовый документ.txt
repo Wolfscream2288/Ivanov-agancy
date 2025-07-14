@@ -153,7 +153,7 @@
 
   <section>
     <h2>Свяжитесь с нами</h2>
-    <form id="contactForm" action="https://formspree.io/f/your_form_id" method="POST">
+    <form id="contactForm" action="https://formspree.io/f/xanbwljo" method="POST">
       <label for="name">Имя:</label>
       <input type="text" id="name" name="name" required />
 
